@@ -25,19 +25,22 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [X] Describe the game's purpose.
+      The game is a number guessing game built with Streamlit. The player chooses a difficulty, guesses the secret number, and uses the game’s “Too High” or “Too Low” hints to narrow down the answer before running out of attempts.
+- [X] Detail which bugs you found.
+      I found that changing the difficulty did not always create a secret number in the correct range. The New Game button did not fully reset the game because some session state values, like score, were not cleared. The Submit Guess button also behaved strangely because the secret number was converted to a string on even-numbered attempts. The attempts display was also shown before the submit logic ran, so it looked like the click count was behind.
+- [X] Explain what fixes you applied.
+      I updated the game so the secret number is generated using the selected difficulty’s range. I added a shared reset function that resets attempts, secret number, score, status, and history for both New Game and difficulty changes. I removed the odd/even secret-number conversion so guesses are always compared against an integer. I also moved the attempts/debug display after the submit logic and kept the debug window expanded after each rerun.
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. User selects a difficulty, and the game creates a secret number in that difficulty’s range.
+2. Score and attempts update correctly after each guess.
+3. User continues guessing until they enter the correct number.
+4. Game returns “Correct!” and shows the final score.
+5. User clicks “New Game” to reset the secret number, attempts, score, and history.
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
